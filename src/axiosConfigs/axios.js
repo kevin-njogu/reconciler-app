@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 export const axiosInstace = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'http://reconciler-test-env.eba-gpdw7fd8.us-east-1.elasticbeanstalk.com/api',
     withCredentials: true,
 });
+
+
 
 axiosInstace.interceptors.request.use(
     async function (config) {
@@ -14,7 +16,7 @@ axiosInstace.interceptors.request.use(
         let csrfToken = localStorage.getItem('csrfToken');
         if (!csrfToken) {
             try {
-                const response = await axios.get('http://localhost:8080/api/csrf_token', { withCredentials: true });
+                const response = await axios.get('http://reconciler-test-env.eba-gpdw7fd8.us-east-1.elasticbeanstalk.com/api/csrf_token', { withCredentials: true });
                 csrfToken = response.data.token;
                 localStorage.setItem('csrfToken', csrfToken);
             } catch (error) {

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router';
 const loginFunction = async (credentials) => {
     try {
         const response = await axiosInstace.post('/auth/public/signin', credentials);
+        console.log(response.data)
+        console.log(response)
         return response.data;
     } catch (error) {
         console.error(error.message);
